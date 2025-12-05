@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "fs-extra": "^11.1.0"
+  },
+  "scripts": {
+    "solve": "node runner.js solve",
+    "new": "node runner.js new"
+  }
+}
