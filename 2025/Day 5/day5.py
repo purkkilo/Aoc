@@ -24,23 +24,19 @@ with open(file_path, 'r') as file:
     lines = file.readlines()
     lines = [line.strip() for line in lines]
 
-
-
 def any_ID_overlap(IDs):
     # For each possible pair of lists in freshIDs
-    for item1, item2 in combinations(IDs, 2):
-        min1, max1 = item1
-        min2, max2 = item2
+    for ID1, ID2 in combinations(IDs, 2):
+        min1, max1 = ID1
+        min2, max2 = ID2
         # No overlap, ignore
         if min1 > max2 or max1 < min2:
             continue
         # Overlap, so return
         else:
-            return item1, item2
+            return ID1, ID2
 
     return None
-
-
 
 empty_line = lines.index("")
 fresh_IDs = [[int(x) for x in line.split("-")] for line in lines[:empty_line]]
@@ -60,18 +56,15 @@ while True:
     if not overlap:
         break
     else:
-        item1, item2 = overlap
-        # Remove the items from the main list
-        fresh_IDs.remove(item1)
-        fresh_IDs.remove(item2)
-        item_values = item1 + item2
-        fresh_IDs.append([min(item_values),max(item_values)])
+        ID1, ID2 = overlap
+        # Remove the IDs from the main list
+        fresh_IDs.remove(ID1)
+        fresh_IDs.remove(ID2)
+        ID_values = ID1 + ID2
+        fresh_IDs.append([min(ID_values),max(ID_values)])
 
 for (lower, higher) in fresh_IDs:
     p2 += higher-lower+1
-
-
-
 
 print()
 print("P1", p1)
